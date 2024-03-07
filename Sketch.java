@@ -1,59 +1,83 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	
-	
+
+  // Initializes variables with random value
+  float fltRandomXValue = random(15, 360);
+  float fltRandomYValue = random(130, 390);
+
   /**
-   * Called once at the beginning of execution, put your size all in this method
+   * Creates the sizing constraints for the window screen
    */
   public void settings() {
 	// put your size call here
     size(620, 400);
   }
-
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
-   */
-  public void setup() {
-    background(0, 0, 0);
-  }
-
-  /**
-   * Called repeatedly, anything drawn to the screen goes here
+    /**
+   * Creates the shapes and time shown on the window screen
    */
   public void draw() {
+    
+    // Creates a conditional selective algorithm to determine what to execute based on the random variables' values
+    if ((fltRandomXValue < 310 && fltRandomYValue < 200) || (fltRandomXValue > 310 && fltRandomYValue > 200)) {
 
-    // initializes variables 
-    float fltEllipseWidth = 300;
-    float fltEllipseHeight = 190;
+      // Sets the colour of the background
+      background(0,0,0);
 
-    // defines the thickness of the line/shapes
-    strokeWeight(12);
+      // Creates a red triangle in relation to the random width and height
+      stroke(255,0,0);
+      fill(0,0,0,0);
+      triangle(fltRandomXValue, fltRandomYValue, fltRandomXValue, fltRandomYValue - 120, fltRandomXValue + 100, fltRandomYValue - 60);
+      
+      // Creates a white ellipse in relation to the random variables
+      stroke(255,255,255);
+      fill(0,0,0,0);
+      ellipse(fltRandomXValue + 110, fltRandomYValue - 60, 140, 120);
 
-    // creates a red triangle in relation to the ellipse
-    stroke(255,0,0);
-    fill(0,0,0,0);
-    triangle(fltEllipseWidth - 210, fltEllipseHeight + 120, fltEllipseWidth - 210, fltEllipseHeight - 120, fltEllipseWidth - 30, fltEllipseHeight + 10);
+      // Creates a blue diamond in relation to the width and height variables
+      stroke(0,0,255);
+      fill(0,0,0,0);
+      quad(fltRandomXValue + 130, fltRandomYValue - 60, fltRandomXValue + 190, fltRandomYValue - 120, fltRandomXValue + 250, fltRandomYValue - 60, fltRandomXValue + 190, fltRandomYValue);
 
-    // creates a blue diamond in relation to the ellipse
-    stroke(0,0,255);
-    quad(fltEllipseWidth + 20, fltEllipseHeight + 10, fltEllipseWidth + 140, fltEllipseHeight - 120, fltEllipseWidth + 255, fltEllipseHeight + 10, fltEllipseWidth + 140, fltEllipseHeight + 114);
+      // initializes variables for the current time
+      int intHours = hour();
+      int intMinutes = minute();
+      int intSeconds = second();
 
-    // creates a white ellipse in the center
-    stroke(255,255,255);
-    fill(0,0,0,0);
-    ellipse(fltEllipseWidth, fltEllipseHeight, fltEllipseWidth, fltEllipseHeight + 70);
+      // Outputs the live time on the screen
+      fill(255,255,255);
+      text(intHours + " : " + intMinutes + " : " + intSeconds, 550, 380);
+    }
 
-    // draws a blue line in relation to the ellipse
-    stroke(0,0,255);
-    line(fltEllipseWidth + 20, fltEllipseHeight + 8, fltEllipseWidth + 140, fltEllipseHeight - 120);
+    // Creates an additional condition in the event the original constraints are not met
+    else {
 
-    // draws a red line in relation to the ellipse
-    stroke(255,0,0);
-    line(fltEllipseWidth - 210, fltEllipseHeight - 120, fltEllipseWidth - 30, fltEllipseHeight + 10);
+      // Sets the colour of the background
+      background(255,255,255);
 
+      // Outputs a blue triangle using the random variables initialized
+      stroke(0,0,255);
+      fill(0,0,0,0);
+      triangle(fltRandomXValue, fltRandomYValue, fltRandomXValue, fltRandomYValue - 120, fltRandomXValue + 100, fltRandomYValue - 60);
+
+      // Creates a black ellipse in relation to the width and height variables
+      stroke(0,0,0);
+      fill(0,0,0,0);
+      ellipse(fltRandomXValue + 110, fltRandomYValue - 60, 140, 120);
+
+      // Creates a red diamond based on the random variables
+      stroke(255,0,0);
+      fill(0,0,0,0);
+      quad(fltRandomXValue + 130, fltRandomYValue - 60, fltRandomXValue + 190, fltRandomYValue - 120, fltRandomXValue + 250, fltRandomYValue - 60, fltRandomXValue + 190, fltRandomYValue);
+
+      // Initializes variables to store the current time
+      int intHours = hour();
+      int intMinutes = minute();
+      int intSeconds = second();
+      
+      // Outputs the current time
+      fill(0,0,0);
+      text(intHours + " : " + intMinutes + " : " + intSeconds, 550, 380);
+    } 
   }
-  
-  // define other methods down here.
 }
